@@ -32,6 +32,8 @@
 		}
 	}
 
+	// This method is to print the "if{" part for any layer. Put necessary amount of 
+	// empty space(s) for given level of layer.
 	private void printIfBra(List<String> ifBlocks, int heading) {
 		StringBuilder sb = new StringBuilder();
 		for (int i = 1; i <= heading; i++) {
@@ -41,6 +43,8 @@
 		ifBlocks.add(str);
 	}
 
+	// This method is to print the "}" part for any layer. Put necessary amount of 
+	// empty space(s) for given level of layer.
 	private void printKet(List<String> ifBlocks, int heading) {
 		StringBuilder sb = new StringBuilder();
 		for (int i = 1; i <= heading; i++) {
