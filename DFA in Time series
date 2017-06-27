@@ -1,0 +1,29 @@
+% Detrended Fluctuation Analysis
+
+% obtain the log of fluctuation for each time of the sp500hf log return. 
+% Computation follows procedures for obtaining Hurst exponent on wikipedia: 
+% https://en.wikipedia.org/wiki/Detrended_fluctuation_analysis.
+
+A = load('sp500hf.txt');
+
+B = diff(log(A));
+y = cumsum(B - mean(B));
+
+	% log of fluctuation is stored in list G.
+	G = 0;
+
+for size = 1:45626
+    windows = int(91251/size);
+    y1 = reshape(y(1 + rem(91251,size)):end),size,windows);
+    x = y1';
+    fluc = 0;
+    for n = 1 : windows
+        z = linspace((n*size-size+1),(n*size),size);
+        p = polyfit(z,x(n,:),1);        % linear fit each window
+        % to obtain the fluctuation and detrend
+        fluc = fluc + sum((x(n,:) - p(1) * x(n,:) - p(2)) .^ 2);
+    end
+    % the fluctuation
+    fluc = sqrt(fluc / size / windows);
+    G(size) = log(fluc);           
+end
