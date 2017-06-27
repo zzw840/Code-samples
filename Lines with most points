@@ -1,10 +1,10 @@
-/** Q: Given an array of points with coordinates (x, y) where x and y are both integers, return the straight line 
- *  that has cross the largest amount of points. 
- *	
- * Time O(n^2), where n is the number of points, Space O(n^2) worst: at most n(n-1)/2 lines.
- *
- * Solution:
- */
+	/** Q: Given an array of points with coordinates (x, y) where x and y are both integers, return the straight line 
+	 *  that has cross the largest amount of points. 
+	 *	
+	 * Time O(n^2), where n is the number of points, Space O(n^2) worst: at most n(n-1)/2 lines.
+ 	 *
+ 	 * Solution:
+ 	 */
  
   	/* To return the straight line with the largest number of points */
 	public Set<Point> lineWithLargestNumPoints(Point[] input) {		
