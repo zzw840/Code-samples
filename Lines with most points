@@ -6,7 +6,7 @@
  * Solution:
  */
  
-  /* To return the straight line with the largest number of points */
+  	/* To return the straight line with the largest number of points */
 	public Set<Point> lineWithLargestNumPoints(Point[] input) {		
 		Map<Pair<Double>, Set<Point>> lines = new HashMap<>();
 		pointToLine(input, lines);
@@ -32,12 +32,10 @@
 					} else {
 						Set<Point> newLine = new HashSet<>();
 						newLine.add(input[j]);
-						lines.put(new Pair((double) input[j].x, 0), 
-newLine);
+						lines.put(new Pair((double) input[j].x, 0), newLine);
 					}
 				} else {
-					double a = (double) (input[j].y - input[i].y) / 
-(double) (input[j].x - input[i].x);
+					double a = (double) (input[j].y - input[i].y) / (double) (input[j].x - input[i].x);
 					double b = (double) (input[j].y - input[j].x * a);
 					if (lines.keySet().contains(new Pair(a, b))) {
 						lines.get(new Pair(a, b)).add(input[j]);
