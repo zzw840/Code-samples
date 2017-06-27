@@ -16,12 +16,12 @@ f = 0;
 % 91252 is the size of A (it is known)
 for s = 1:91251
 	c = mean(B(1:s));
-clear x;
-x = B(1:s) - c;
-clear y;
+	clear x;
+	x = B(1:s) - c;
+	clear y;
 	y = cumsum(x);
 
-T = std(x,1);                     % Calculate the standard deviation
-R = max(y) - min(y);              % Range series
-f(s) = log(R/T);                  % Log of rescaled range.
+	T = std(x,1);                     % Calculate the standard deviation
+	R = max(y) - min(y);              % Range series
+	f(s) = log(R/T);                  % Log of rescaled range.
 end
