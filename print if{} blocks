@@ -1,0 +1,51 @@
+  /*
+	 * This method is to print all possible if blocks with n if's. Assumption: n
+	 * >= 0.
+	 */
+   
+	public void printIfBlocks(int n) {
+		List<String> ifBlocks = new ArrayList<>();
+		printIfBlocks(ifBlocks, n, n, 0);
+	}
+
+	private void printIfBlocks(List<String> ifBlocks, int ifNum, int ketNum,
+			int heading) {
+
+		if (ifNum == 0 && ketNum == 0) {
+			for (int i = 0; i < ifBlocks.size(); i++) {
+				System.out.println(ifBlocks.get(i));
+			}
+			System.out.println("");
+			return;
+		}
+
+		if (ifNum > 0) {
+			printIfBra(ifBlocks, heading);
+			printIfBlocks(ifBlocks, ifNum - 1, ketNum, heading + 2);
+			ifBlocks.remove(ifBlocks.size() - 1);
+		}
+
+		if (ketNum > ifNum) {
+			printKet(ifBlocks, heading - 2);
+			printIfBlocks(ifBlocks, ifNum, ketNum - 1, heading - 2);
+			ifBlocks.remove(ifBlocks.size() - 1);
+		}
+	}
+
+	private void printIfBra(List<String> ifBlocks, int heading) {
+		StringBuilder sb = new StringBuilder();
+		for (int i = 1; i <= heading; i++) {
+			sb.append(" ");
+		}
+		String str = sb.append("if {").toString();
+		ifBlocks.add(str);
+	}
+
+	private void printKet(List<String> ifBlocks, int heading) {
+		StringBuilder sb = new StringBuilder();
+		for (int i = 1; i <= heading; i++) {
+			sb.append(" ");
+		}
+		String str = sb.append("}").toString();
+		ifBlocks.add(str);
+	}
