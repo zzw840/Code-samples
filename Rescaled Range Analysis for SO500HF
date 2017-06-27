@@ -1,0 +1,27 @@
+% Language: MATLAB
+
+% Rescaled Range Analysis - 
+
+% Goal: To obtain the log scale of the rescaled range series of the SP500HF index for each time.
+
+% Note: A is a list of SP500HF index in chronological order.
+A = load('sp500hf.txt');
+
+% B is the log return for the sp500hf index.
+B = diff(log(A));
+
+% The list for log of rescaled range is stored in list f.
+f = 0;
+
+% 91252 is the size of A (it is known)
+for s = 1:91251
+	c = mean(B(1:s));
+clear x;
+x = B(1:s) - c;
+clear y;
+	y = cumsum(x);
+
+T = std(x,1);                     % Calculate the standard deviation
+R = max(y) - min(y);              % Range series
+f(s) = log(R/T);                  % Log of rescaled range.
+end
